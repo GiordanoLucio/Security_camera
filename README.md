@@ -1,6 +1,6 @@
 # Security_camera
 Project done in collaboration with Carmine D'Alessandro for the exam 'Serverless Computing'.<br><br>
-The goal of the project was to develop an application for the communication of one or more sensors with a broker of message through the MQTT protocol, the analysis of data and the notification of the end-user if a particular condition was met.
+The goal of the project is to develop an application for the communication of one or more sensors with a broker of messages through the MQTT protocol, the analysis of data and the notification of the end-user if a particular condition is met.
 
 ## Overall architecture
 The project can be divided into 3 main parts:
@@ -8,7 +8,7 @@ The project can be divided into 3 main parts:
 * Message broker
 * Receiving client
 
-A sending client (CameraClient) sends frames to topics of the broker in specific time slots. On the other side, two receving clients (MonitorClient, SecurityClient) subscribe to those topics and receive the information. The SecurityClient analyzes the image and detects the number of faces. This information is send back to the message broker which triggers the [IFTTT](https://ifttt.com/) API and send a notification to the Telegram chat of the user.
+A sending client (CameraClient) sends frames to topics of the broker in specific time slots. On the other side, two receving clients (MonitorClient, SecurityClient) subscribe to those topics and receive the information. The SecurityClient analyzes the image and detects the number of faces. This information is sent back to the message broker which triggers the [IFTTT](https://ifttt.com/) API and send a notification to the Telegram chat of the user.
 ### Camera client
 The Camera client is made in Python 3.6 and uses the library [pika](https://pypi.org/project/pika/) to establish a connection with the message broker. <br>
 The client uses the camera of the computer to register the video stream and, from all the frames deteced in the stream, send some frames to the message broker in two different topics, "view" and "security", according to the future use. The number of frames sent in the two streams is different.
